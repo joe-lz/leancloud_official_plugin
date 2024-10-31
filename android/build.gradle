@@ -33,7 +33,7 @@ android {
     // 添加 namespace，替换为实际的包名
     namespace 'cn.leancloud.plugin'
 
-    compileSdkVersion 28
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 16
