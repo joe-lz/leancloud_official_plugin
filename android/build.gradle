@@ -33,10 +33,11 @@ android {
     // 添加 namespace，替换为实际的包名
     namespace 'cn.leancloud.plugin'
 
-    compileSdkVersion 34
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 16
+        targetSdkVersion 34 // 更新为 34
+        minSdkVersion 21 // 保持在合适的值
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
