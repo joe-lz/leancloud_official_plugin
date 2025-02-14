@@ -56,7 +56,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.plugin.common.StandardMethodCodec;
 
 /**
@@ -75,22 +74,7 @@ public class LeancloudPlugin implements FlutterPlugin, MethodCallHandler,
     _initialize(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "leancloud_plugin");
   }
 
-  // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-  // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-  // plugin registration via this function while apps migrate to use the new Android APIs
-  // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-  //
-  // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-  // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-  // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-  // in the same class.
-  public static void registerWith(Registrar registrar) {
-    Log.d(TAG, "LeancloudPlugin#registerWith called.");
-    _initialize(registrar.messenger(), "leancloud_plugin");
-  }
-
   private static void _initialize(BinaryMessenger messenger, String name) {
-//    if (null == _CHANNEL) {
     _CHANNEL = new MethodChannel(messenger, "leancloud_plugin", new StandardMethodCodec(new LeanCloudMessageCodec()));
     _CHANNEL.setMethodCallHandler(_INSTANCE);
 
@@ -99,7 +83,6 @@ public class LeancloudPlugin implements FlutterPlugin, MethodCallHandler,
     LCIMClient.setClientEventHandler(new DefaultClientEventHandler(_INSTANCE));
     LCIMOptions.getGlobalOptions().setSignatureFactory(DefaultSignatureFactory.getInstance());
     handler = new Handler(Looper.getMainLooper());
-//    }
   }
 
   private SignatureFactory generateSignatureFactory() {
